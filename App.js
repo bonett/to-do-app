@@ -1,19 +1,49 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import Header from './header';
+import Wrapper from './wrapper';
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-    </View>
-  );
+class App extends React.Component {
+
+  constructor() {
+    super();
+
+    this.state = {
+      taskList: [],
+      text: ''
+    }
+  }
+
+  createNewTask = () => {
+    this.setState(prevState => ({
+      taskList: [...prevState.taskList, prevState.text],
+      text: '',
+    }));
+  }
+
+  textInputHandler = (value) => {
+    this.setState({ text: value });
+  }
+
+  render() {
+    const { text, taskList } = this.state;
+    return (
+      <View style={styles.container}>
+        <Header
+          onChangeInput={this.textInputHandler}
+          onPressTask={this.createNewTask}
+          text={text} />
+        <Wrapper taskList={taskList} />
+      </View>
+    )
+  }
 }
+
+export default App
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+    backgroundColor: '#fff'
+  }
 });
