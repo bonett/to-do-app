@@ -1,15 +1,22 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { View, Text, StyleSheet, TextInput } from 'react-native';
 
-const Header = (props) => {
-    return (
-        <View style={styles.container}>
-            <TextInput
-                style={styles.inputText}
-                onChangeText={(value) => { props.onChangeInput(value) }}
-                placeholder="Type your task here ..." />
-        </View>
-    )
+class Header extends React.Component {
+    render() {
+
+        const { text, onPressTask, onChangeInput } = this.props;
+
+        return (
+            <View style={styles.container} >
+                <TextInput
+                    style={styles.inputText}
+                    onChangeText={onChangeInput}
+                    placeholder="Type your task here ..."
+                    onSubmitEditing={onPressTask}
+                    value={text} />
+            </View>
+        )
+    }
 }
 
 export default Header
