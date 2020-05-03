@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, FlatList } from 'react-native';
+import Task from './task';
 
 class Wrapper extends React.Component {
     render() {
@@ -10,7 +11,7 @@ class Wrapper extends React.Component {
             <View style={styles.container} >
                 <FlatList
                     data={taskList}
-                    renderItem={({ item }) => <Text>{item}</Text>} />
+                    renderItem={({ item }) => <Task task={item}/> } />
             </View>
         )
     }
@@ -20,8 +21,6 @@ export default Wrapper
 
 const styles = StyleSheet.create({
     container: {
-        flex: 6,
-        alignItems: 'center',
-        justifyContent: 'center',
+        flex: 9
     }
 });
