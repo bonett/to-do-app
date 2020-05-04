@@ -5,13 +5,13 @@ import Task from './task';
 class Wrapper extends React.Component {
     render() {
 
-        const { taskList } = this.props;
+        const { taskList, deleteTask } = this.props;
 
         return (
             <View style={styles.container} >
                 <FlatList
                     data={taskList}
-                    renderItem={({ item }) => <Task task={item}/> } />
+                    renderItem={({ item }) => <Task task={item} deleteFromIcon={deleteTask}/> } />
             </View>
         )
     }

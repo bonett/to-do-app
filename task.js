@@ -1,17 +1,19 @@
 import React, { Component } from 'react';
-import { Text, View, StyleSheet } from 'react-native';
+import { Text, View, StyleSheet, TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
 class Task extends React.Component {
     render() {
-        const { task, index  } = this.props;
+        const { task, deleteFromIcon } = this.props;
         return (
             <View style={styles.container}>
                 <Text style={styles.text}>{task}</Text>
-                <Ionicons
-                    name="md-trash"
-                    size="24"
-                    color="gray" />
+                <TouchableOpacity onPress={() => deleteFromIcon(task)}>
+                    <Ionicons
+                        name="md-trash"
+                        size={24}
+                        color="gray" />
+                </TouchableOpacity>
             </View>
         )
     }

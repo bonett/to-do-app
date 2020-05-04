@@ -9,12 +9,12 @@ class App extends React.Component {
     super();
 
     this.state = {
-      taskList: [],
+      taskList: ['Linux', 'Mazino', 'Karosi', 'IK'],
       text: ''
     }
   }
 
-  createNewTask = () => {
+  createNewTask = (value) => {
     this.setState(prevState => ({
       taskList: [...prevState.taskList, prevState.text],
       text: '',
@@ -25,6 +25,12 @@ class App extends React.Component {
     this.setState({ text: value });
   }
 
+  hanldeDeleteTask = (value) => {
+    const { taskList } = this.state;
+    const newTaskList = taskList.filter((item) => { return item !== value });
+    this.setState({ taskList: newTaskList });
+  }
+
   render() {
     const { text, taskList } = this.state;
     return (
@@ -33,7 +39,9 @@ class App extends React.Component {
           onChangeInput={this.textInputHandler}
           onPressTask={this.createNewTask}
           text={text} />
-        <Wrapper taskList={taskList} />
+        <Wrapper
+          taskList={taskList}
+          deleteTask={this.hanldeDeleteTask}/>
       </View>
     )
   }
